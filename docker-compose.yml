@@ -1,0 +1,18 @@
+version: "3"
+services:
+  flask-app:
+    build: . 
+    ports:
+      - 8080:8000
+    env_file:
+      - env_files/flask_app.env
+    depends_on: 
+      - docker_pgs
+  
+  docker_pgs:
+    image: postgres
+    ports:
+      - 5432:5432
+    env_file:
+      - env_files/postgres.env
+    restart: on-failure
