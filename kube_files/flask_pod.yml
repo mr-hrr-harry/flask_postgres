@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: flask-app-pod
+  labels:
+    tool: flask
+    tier: web-app
+    part: backend
+spec:
+  containers:
+    - name: flask-app
+      image: flask_pgs-flask-app:latest
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 8000

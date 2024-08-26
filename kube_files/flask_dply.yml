@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-deployment
+  labels:
+    tool: flask
+    tier: web-app
+    part: backend
+spec:
+  replicas: 4
+  template: 
+    metadata: 
+      name: flask-app-pod
+      labels:
+        tool: flask
+        tier: web-app
+        part: backend
+    spec:
+      containers:
+        - name: flask-app
+          image: flask_pgs-flask-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+  selector:
+    matchLabels:
+        tool: flask
+        tier: web-app
+        part: backend

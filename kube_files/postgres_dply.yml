@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    tool: postgres
+    tier: database
+    part: backend
+spec:
+  replicas: 4
+  template: 
+    metadata:
+      name: postgres-pod
+      labels:
+        tool: postgres
+        tier: database
+        part: backend
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "harry"
+            - name: POSTGRES_DB
+              value: "flask_db"
+            - name: POSTGRES_PASSWORD
+              value: "password"
+  selector:
+    matchLabels:
+        tool: postgres
+        tier: database
+        part: backend
