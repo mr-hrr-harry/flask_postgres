@@ -9,6 +9,8 @@ RUN apt update &&\
 
 COPY . .
 
+ENV DB_URL=postgresql://harry:password@docker_pgs:5432/flask_db
+
 EXPOSE 8000
 
 CMD ["flask", "run", "--host", "0.0.0.0", "--port", "8000"]

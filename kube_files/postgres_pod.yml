@@ -6,6 +6,7 @@ metadata:
     tool: postgres
     tier: database
     part: backend
+    type: pod
 spec:
   containers:
     - name: postgres

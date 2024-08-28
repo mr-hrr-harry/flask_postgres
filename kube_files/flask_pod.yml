@@ -6,6 +6,7 @@ metadata:
     tool: flask
     tier: web-app
     part: backend
+    type: pod
 spec:
   containers:
     - name: flask-app
@@ -13,3 +14,6 @@ spec:
       imagePullPolicy: Never
       ports:
         - containerPort: 8000
+      env:
+        - name: DB_URL
+          value: "postgresql://harry:password@postgres-service:5432/flask_db"
